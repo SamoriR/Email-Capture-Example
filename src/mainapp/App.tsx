@@ -64,7 +64,7 @@ const ContentDiv = styled.div`
   width: 100%;
 
   text-align: center;
-  padding-top: 160px;
+  padding-top: 20%;
   padding-bottom: 80px;
 `
 
