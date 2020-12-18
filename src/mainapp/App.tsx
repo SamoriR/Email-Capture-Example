@@ -141,7 +141,7 @@ function App() {
       const fEmailIsValid = regExCondition.test(emailRef.current.value)
 
       if (fEmailIsValid) {
-        // DO SOMETHING
+        // DO SOMETHING HERE
       } else {
         alert('Please use a valid email')
       }
