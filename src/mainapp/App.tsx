@@ -66,6 +66,14 @@ const ContentDiv = styled.div`
   text-align: center;
   padding-top: 20%;
   padding-bottom: 80px;
+
+  @media (max-width: 768px) {
+    padding-top: 30%;
+  }
+
+  @media (max-width: 384px) {
+    padding-top: 40%;
+  }
 `
 
 const FormDiv = styled.div`
