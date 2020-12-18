@@ -9,19 +9,28 @@ const emailRegExPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-z.]{2,6}$"
 /**********************************
   Styled Components
 **********************************/
+const MainDiv = styled.div`
+  max-width: 100%;
+`
+
 const FullScreenDiv = styled.div`
-  height: 100vh;
-  min-width: 300px;
-  width: 100%;
-  background-Color: black;
   display: flex;
-  justify-content: center;
+  flex-direction: column;  
+
+  height: 100vh;
+  width: 100%;
+  min-width: 300px;
+  background-Color: black;
+
+  justify-content: space-between;
   align-items: center;
+  text-align: center;
 `
 
 const TitleP = styled.p`
-  font-family: Helvetica;
+  font-family: 'Roboto', sans-serif;
   font-size: 110px;
+  font-weight: bold;
   color: #FFEEDD;
   letter-spacing: 3.38px;
   margin: 0;
@@ -49,9 +58,14 @@ const TitleDiv = styled.div`
 `
 
 const ContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
+
   text-align: center;
-  padding-bottom: 140px;
+  padding-top: 160px;
+  padding-bottom: 80px;
 `
 
 const FormDiv = styled.div`
@@ -107,7 +121,6 @@ const ScreenshotImg = styled.img`
 `
 
 const ScreenshotDiv = styled.div`
-  position: absolute;
   width: 100%;
   height: 300px;
   bottom: 0;
@@ -144,27 +157,29 @@ function App() {
   }
 
   return (
-    <FullScreenDiv>
-      <ContentDiv>
-        <TitleDiv>
-          <TitleP>Feedback</TitleP>
-          <PeriodP>.</PeriodP>
-        </TitleDiv>
-        
-        <FormDiv>
-          <EmailInput
-            type="email"
-            placeholder="Email Address"
-            ref={emailRef}
-            onKeyPress={onEmailInputKeyPress}/>
-          <SubmitButton onClick={onSubmitButtonClick}> Get Early Access </SubmitButton>
-        </FormDiv>
-        
+    <MainDiv>
+      <FullScreenDiv>
+        <ContentDiv>
+          <TitleDiv>
+            <TitleP>Feedback</TitleP>
+            <PeriodP>.</PeriodP>
+          </TitleDiv>
+          
+          <FormDiv>
+            <EmailInput
+              type="email"
+              placeholder="Email Address"
+              ref={emailRef}
+              onKeyPress={onEmailInputKeyPress}/>
+            <SubmitButton onClick={onSubmitButtonClick}> Get Early Access </SubmitButton>
+          </FormDiv>
+        </ContentDiv>
+
         <ScreenshotDiv>
           <ScreenshotImg src={Screenshot}/>
         </ScreenshotDiv>
-      </ContentDiv>
-    </FullScreenDiv>
+      </FullScreenDiv>
+    </MainDiv>
   );
 }
 
