@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
-import styled from 'styled-components';
+import React, { useRef } from 'react'
+import styled from 'styled-components'
+import faunadb from 'faunadb'
+
 import Screenshot from '../assets/FeedbackScreen.png'
 
 const emailRegExPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-z.]{2,6}$"
@@ -142,14 +144,38 @@ const ScreenshotDiv = styled.div`
 **********************************/
 function App() {
   const emailRef = useRef<HTMLInputElement>(null)
+  let faunadbClient: faunadb.Client | undefined = undefined;
 
   const onSubmitButtonClick = () => {
     if (emailRef !== null && emailRef.current !== null){
+      const email = emailRef.current.value
       const regExCondition = new RegExp(emailRegExPattern, 'g')
-      const fEmailIsValid = regExCondition.test(emailRef.current.value)
+      const fEmailIsValid = regExCondition.test(email)
 
       if (fEmailIsValid) {
-        // DO SOMETHING HERE
+        if (process.env.NODE_ENV !== 'production') {
+          alert('Dev: Valid Email Used')
+
+        } else {
+          let key: string | undefined = process.env.FAUNADB_KEY
+
+          if (key !== undefined) {
+            if (faunadbClient === undefined) {
+              faunadbClient = new faunadb.Client({ secret: key })
+            }
+
+            const q = faunadb.query
+            
+            q.Create(
+              q.Collection('signups'),
+              { data: { email: email } }
+            )
+
+            alert('Success! Thank you for signing up for early access.')
+          }
+
+        }
+
       } else {
         alert('Please use a valid email')
       }
