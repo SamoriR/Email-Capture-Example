@@ -172,6 +172,8 @@ function App() {
             )
 
             alert('Success! Thank you for signing up for early access.')
+          } else {
+            console.log('Key is undefined')
           }
 
         }
@@ -183,7 +185,6 @@ function App() {
   }
 
   const onEmailInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(event)
     if (event.charCode === 13) {
       event.preventDefault();
       onSubmitButtonClick();
