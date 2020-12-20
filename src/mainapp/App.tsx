@@ -138,12 +138,14 @@ const spin = keyframes`
     transform: perspective(400px) rotateY(360deg);
   }
 `
+/*
+  animation: 4s ${spin};
+  animation-iteration-count: infinite;
+*/
 
 const ScreenshotImg = styled.img`
   width: 280px;
   height: auto;
-  animation: 4s ${spin};
-  animation-iteration-count: infinite;
 `
 
 const ScreenshotDiv = styled.div`
@@ -182,16 +184,12 @@ function App() {
 
             const q = faunadb.query
             
-            let clientQuery = faunadbClient.query(
+            faunadbClient.query(
               q.Create(
                 q.Collection('signups'),
                 { data: { email: email } }
               )
             )
-
-            clientQuery.then(function(response) {
-              console.log(response) // Logs the ref to the console.
-            })
 
             alert('Success! Thank you for signing up for early access.')
           } else {
