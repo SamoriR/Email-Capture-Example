@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.5"
+    "@types/styled-components": "^5.1.5",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3"
   }
 }

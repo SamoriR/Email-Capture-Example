@@ -157,7 +157,8 @@ function App() {
           alert('Dev: Valid Email Used')
 
         } else {
-          let key: string | undefined = process.env.FAUNADB_KEY
+          console.log(process.env)
+          let key: string | undefined = process.env.REACT_APP_FAUNADB_KEY
 
           if (key !== undefined) {
             if (faunadbClient === undefined) {
