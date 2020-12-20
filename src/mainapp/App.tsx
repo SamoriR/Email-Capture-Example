@@ -166,16 +166,18 @@ function App() {
 
             const q = faunadb.query
             
-            q.Create(
-              q.Collection('signups'),
-              { data: { email: email } }
+            faunadbClient.query(
+              q.Create(
+                q.Collection('signups'),
+                { data: { email: email } }
+              )
             )
 
             alert('Success! Thank you for signing up for early access.')
           } else {
             console.log('Key is undefined')
+            
           }
-
         }
 
       } else {
