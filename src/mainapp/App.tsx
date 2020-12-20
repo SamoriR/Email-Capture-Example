@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import faunadb from 'faunadb'
 
 import Screenshot from '../assets/FeedbackScreen.png'
@@ -125,9 +125,25 @@ const SubmitButton = styled.button`
   }
 `
 
+const spin = keyframes`
+  0% {
+    transform: perspective(400px) rotateY(0);
+  }
+
+  50% {
+    transform: perspective(400px) rotateY(180deg);
+  }
+
+  100% {
+    transform: perspective(400px) rotateY(360deg);
+  }
+`
+
 const ScreenshotImg = styled.img`
   width: 280px;
   height: auto;
+  animation: 4s ${spin};
+  animation-iteration-count: infinite;
 `
 
 const ScreenshotDiv = styled.div`
@@ -166,12 +182,16 @@ function App() {
 
             const q = faunadb.query
             
-            faunadbClient.query(
+            let clientQuery = faunadbClient.query(
               q.Create(
                 q.Collection('signups'),
                 { data: { email: email } }
               )
             )
+
+            clientQuery.then(function(response) {
+              console.log(response) // Logs the ref to the console.
+            })
 
             alert('Success! Thank you for signing up for early access.')
           } else {
