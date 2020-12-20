@@ -125,6 +125,7 @@ const SubmitButton = styled.button`
   }
 `
 
+/*
 const spin = keyframes`
   0% {
     transform: perspective(400px) rotateY(0);
@@ -138,7 +139,7 @@ const spin = keyframes`
     transform: perspective(400px) rotateY(360deg);
   }
 `
-/*
+
   animation: 4s ${spin};
   animation-iteration-count: infinite;
 */
