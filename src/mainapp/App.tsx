@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import faunadb from 'faunadb'
+import './App.css'
 
-import Screenshot from '../assets/FeedbackScreen.png'
+import FlipCard from './components/FlipCard'
 
 const emailRegExPattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-z.]{2,6}$"
 
@@ -17,7 +18,6 @@ const MainDiv = styled.div`
 
 const FullScreenDiv = styled.div`
   display: flex;
-  flex-direction: column;  
 
   height: 100vh;
   width: 100%;
@@ -27,6 +27,8 @@ const FullScreenDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+
+  flex-direction: column;  
 `
 
 const TitleP = styled.p`
@@ -125,35 +127,18 @@ const SubmitButton = styled.button`
   }
 `
 
-/*
-const spin = keyframes`
-  0% {
-    transform: perspective(400px) rotateY(0);
-  }
-
-  50% {
-    transform: perspective(400px) rotateY(180deg);
-  }
-
-  100% {
-    transform: perspective(400px) rotateY(360deg);
-  }
-`
-
-  animation: 4s ${spin};
-  animation-iteration-count: infinite;
-*/
-
-const ScreenshotImg = styled.img`
-  width: 280px;
-  height: auto;
-`
-
 const ScreenshotDiv = styled.div`
   width: 100%;
-  height: 300px;
+  height: 100%;
   bottom: 0;
   overflow: hidden;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 `
 
 
@@ -161,15 +146,15 @@ const ScreenshotDiv = styled.div`
 /**********************************
   Main App
 **********************************/
-function App() {
-  const emailRef = useRef<HTMLInputElement>(null)
+const App = () => {
+  const emailRef: React.RefObject<HTMLInputElement> = useRef<HTMLInputElement>(null)
   let faunadbClient: faunadb.Client | undefined = undefined;
 
-  const onSubmitButtonClick = () => {
+  const onSubmitButtonClick = (): void => {
     if (emailRef !== null && emailRef.current !== null){
-      const email = emailRef.current.value
-      const regExCondition = new RegExp(emailRegExPattern, 'g')
-      const fEmailIsValid = regExCondition.test(email)
+      const email: string = emailRef.current.value
+      const regExCondition: RegExp = new RegExp(emailRegExPattern, 'g')
+      const fEmailIsValid: boolean = regExCondition.test(email)
 
       if (fEmailIsValid) {
         if (process.env.NODE_ENV !== 'production') {
@@ -232,7 +217,7 @@ function App() {
         </ContentDiv>
 
         <ScreenshotDiv>
-          <ScreenshotImg src={Screenshot}/>
+          <FlipCard/>
         </ScreenshotDiv>
       </FullScreenDiv>
     </MainDiv>
