@@ -1,20 +1,19 @@
-import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
-import HomeScreenshot from '../../assets/FBHome.png'
-import ValuationScreenshot from '../../assets/FBValuation.png'
+import HomeScreenshot from 'res/FBHome.png'
+import ValuationScreenshot from 'res/FBValuation.png'
 
 const spin = keyframes`
     0% {
-        transform: perspective(400px) rotateY(0);
+        transform: perspective(1000px) rotateY(0);
     }
 
     50% {
-        transform: perspective(400px) rotateY(180deg);
+        transform: perspective(1000px) rotateY(180deg);
     }
 
     100% {
-        transform: perspective(400px) rotateY(360deg);
+        transform: perspective(1000px) rotateY(360deg);
     }
 `
 
@@ -29,7 +28,7 @@ const FlipInnerCardDiv = styled.div`
     text-align: center;
     transform-style: preserve-3d;
 
-    animation: ${spin} 5s;
+    animation: ${spin} 8s;
     animation-iteration-count: infinite;
 `
 
